@@ -108,36 +108,38 @@ def main():
         
         choice = input("Enter your choice: ").strip()
         
-        if choice == '1':
-            transactions = add_transaction(transactions)
-        elif choice == '2':
-            view_transactions(transactions)
-        elif choice == '3':
-            balance = calculate_balance(transactions)
-            print(f"Your current balance is: {balance}")
-        elif choice == '4':
-            print("\nDetailed Report Menu:")
-            print("1. Total spent today")
-            print("2. Total spent this week")
-            print("3. Total spent this month")
-            print("4. Back to main menu")
+        match choice:
+            case '1':
+                transactions = add_transaction(transactions)
+            case '2':
+                 view_transactions(transactions)
+            case '3':
+                balance = calculate_balance(transactions)
+                print(f"Your current balance is: {balance}")
+            case '4':
+                print("\nDetailed Report Menu:")
+                print("1. Total spent today")
+                print("2. Total spent this week")
+                print("3. Total spent this month")
+                print("4. Back to main menu")
             
-            report_choice = input("Enter your choice: ").strip()
-            if report_choice == '1':
-                generate_report(transactions, 'today')
-            elif report_choice == '2':
-                generate_report(transactions, 'week')
-            elif report_choice == '3':
-                generate_report(transactions, 'month')
-            elif report_choice == '4':
-                continue
-            else:
-                print("Invalid choice. Please try again.")
-        elif choice == '5':
-            print("Exiting application...")
-            break
-        else:
-            print("Invalid choice. Please enter 1, 2, 3, 4, or 5.")
+                report_choice = input("Enter your choice: ").strip()
+                match report_choice: 
+                    case '1':
+                        generate_report(transactions, 'today')
+                    case '2':
+                        generate_report(transactions, 'week')
+                    case '3':
+                        generate_report(transactions, 'month')
+                    case '4':
+                        continue
+                    case _:
+                        print("Invalid choice. Please try again.")
+            case '5':
+                print("Exiting application...")
+                break
+            case _:
+                print("Invalid choice. Please enter 1, 2, 3, 4, or 5.")
 
 if __name__ == "__main__":
     main()
